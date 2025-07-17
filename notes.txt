@@ -1,0 +1,5 @@
+VS Code: has something known as emmet , it generates some code for you inside Vscode
+
+how browser understands document.createElement browser has capabilities it has JS ENigine in it. //Browser doesn't know react and our project is also not configured to use react
+1st way of getting react in  ti our projrct is  via CDN
+Content delivery netwoeks are sites where react library is hosted and we are fething react from there using CDN link in our project and use it
