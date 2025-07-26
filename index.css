@@ -21,7 +21,7 @@
 
 .res-card {
   padding: 5px;
-  width: 200px;
+  width: 250px;
   margin: 5px;
 }
 
@@ -34,8 +34,17 @@
   padding: 10px;
 }
 
+.image-frame {
+  width: 100%;
+  height: 180px; /* Adjust height to whatever looks best for your card */
+  overflow: hidden;
+  border-radius: 5px; /* Optional, makes it look smoother */
+}
+
 .res-logo {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .res-container {
