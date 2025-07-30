@@ -16,3 +16,6 @@
 - - Contact
 -
 - \*/
+
+We are using thsi approach for beter UX:
+App Loads --> render(skeleton) --> Api call --> Re-render
