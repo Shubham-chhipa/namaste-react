@@ -9,7 +9,7 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]); //we created another state variable for managing the filtered restaurants so we don't update the listOfRestaurants
   const [searchText, setSearchText] = useState("");
 
-  //Whenever state variable update, react triggers a reconciliation cycle(re-renders the component)
+  //Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
 
   useEffect(() => {
     //useEffect take 2 arguments a callback function and a dependency array. //This callback will be called after the component(Body) is rendered
@@ -21,12 +21,13 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.2215115&lng=73.1644628&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
+    // console.log(json);
 
     setListOfRestaurants(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilteredRestaurants(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
@@ -51,8 +52,8 @@ const Body = () => {
               const searchFilter = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              console.log(listOfRestaurants);
-              console.log(searchFilter);
+              // console.log(listOfRestaurants);
+              // console.log(searchFilter);
               setFilteredRestaurants(searchFilter);
             }}
           >

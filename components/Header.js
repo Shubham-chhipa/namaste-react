@@ -1,8 +1,18 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; //Link component given us by react-router-dom it will refresh the components which needs to be changed, avoiding whole page reload.
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
-  //console.log("Header render"); //To see that header component is rendered/called again.
+  console.log("Header render"); //To see that header component is rendered/called again.
+
+  //In each case useEffect will be called on/after initial render
+  //If no dependency array  => useEffect is called on/after every render
+  //If dependency array is empty [] => useEffect is only called on/after initial render(just once)
+  //If dependency array is [btnNameReact] => useEffect is called everytime btnNameReact is updated (after component render)
+  useEffect(() => {
+    //console.log("useEffect called");
+  }, [btnNameReact]);
+
   return (
     <div className="header">
       <div className="logo-container">
@@ -10,9 +20,15 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Conatct Us</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About Us</Link>
+          </li>
+          <li>
+            <Link to="/contact">Conatct Us</Link>
+          </li>
           <li>Cart</li>
           <button
             className="login"
