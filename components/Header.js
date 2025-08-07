@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; //Link component given us by react-router-dom it will refresh the components which needs to be changed, avoiding whole page reload.
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
-  console.log("Header render"); //To see that header component is rendered/called again.
+  //console.log("Header render"); //To see that header component is rendered/called again.
 
   //In each case useEffect will be called on/after initial render
   //If no dependency array  => useEffect is called on/after every render

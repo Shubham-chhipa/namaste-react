@@ -23,7 +23,7 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-    errorElement: <Error />, //In case of error render Error component
+
     children: [
       //Children  routes:
       {
@@ -43,6 +43,7 @@ const appRouter = createBrowserRouter([
         element: <RestaurantMenu />,
       },
     ], //<Body />. <About /> and <Contact /> are children of AppLayout
+    errorElement: <Error />, //In case of error render Error component
   },
 ]);
 

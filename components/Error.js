@@ -1,7 +1,7 @@
-import { useRouteError } from "react-router-dom"; //A useful given us by react-router-dom
+import { useRouteError } from "react-router-dom"; //A useful hook given us by react-router-dom
 
 const Error = () => {
-  const err = useRouteError(); //Gives us more detail information about the error, which we can use. returns an error object.
+  const err = useRouteError(); //This hook Gives us more detail information about the error, which we can use. returns an error object.
   console.log(err);
   return (
     <div>

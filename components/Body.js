@@ -2,6 +2,7 @@ import RestaurantCard from "./Restaurantcard";
 import Shimmer from "./Shimmer";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; //component
 
 const Body = () => {
   //Local state variable -Super powerful variable
@@ -78,7 +79,12 @@ const Body = () => {
           (
             restaurant //If listOfRestaurants changes then our cards in UI will change
           ) => (
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+            <Link
+              to={"restaurants/" + restaurant.info.id}
+              key={restaurant.info.id} //Now we are mapping over  <Link> </Link> component so key should be on <Link>  and not on <RestaurantCard />, Key should be over the parent JSX  i.e, <Link> coz we are mapping over it.
+            >
+              <RestaurantCard resData={restaurant} />
+            </Link>
           )
         )}
       </div>
