@@ -11,7 +11,8 @@ const Header = () => {
   //If dependency array is [btnNameReact] => useEffect is called everytime btnNameReact is updated (after component render)
   useEffect(() => {
     //console.log("useEffect called");
-  }, [btnNameReact]);
+  }, [btnNameReact]); // we can pass multiple dependecies in dependent array so if one or the other dependency changes then useEffect() wil be called
+  //If we want to do 2 different things on change of 2 different state variables then we can use 2 useEffect hooks for each state variable(dependency)
 
   return (
     <div className="header">
