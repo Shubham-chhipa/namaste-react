@@ -25,6 +25,7 @@ const Body = () => {
     // console.log(json);
 
     setListOfRestaurants(
+      //we can call setsatevariablename methods anywhere inside our component
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilteredRestaurants(

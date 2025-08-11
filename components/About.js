@@ -16,22 +16,22 @@ class About extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log("Parent Constructor");
+    // console.log("Parent Constructor");
   }
 
   componentDidMount() {
-    console.log("Parent Component did mount");
+    // console.log("Parent Component did mount");
   }
 
   render() {
-    console.log("Parent Render");
+    // console.log("Parent Render");
     return (
       <div>
         <h1>This is Reactjs About us page</h1>
         {/* <User name="ShubhamChhipa(Functional Component)" location={"USA"} /> */}
         <UserClass name="First" location="USA" />
-        <UserClass name="Second" location="USA" />
-        {/** Class absed components are used the same way as functional component and passing props is also same */}
+
+        {/** Class based components are used the same way as functional component and passing props is also same */}
       </div>
     );
   }
