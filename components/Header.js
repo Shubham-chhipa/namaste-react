@@ -1,9 +1,11 @@
 import { LOGO_URL } from "../utils/constants";
 import { useState, useEffect } from "react";
+import useOnlineStatus from "../utils/useOnlineStatus";
 import { Link } from "react-router-dom"; //Link component given us by react-router-dom it will refresh the components which needs to be changed, avoiding whole page reload.
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
   //console.log("Header render"); //To see that header component is rendered/called again.
+  const onlineStatus = useOnlineStatus();
 
   //In each case useEffect will be called on/after initial render
   //If no dependency array  => useEffect is called on/after every render
@@ -21,6 +23,7 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
+          <li>Online: {onlineStatus ? "🟢" : "🔴"}</li>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -29,6 +32,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/contact">Conatct Us</Link>
+          </li>
+          <li>
+            <Link to="/groceries">Groceries</Link>
           </li>
           <li>Cart</li>
           <button

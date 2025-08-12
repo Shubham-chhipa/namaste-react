@@ -3,6 +3,7 @@ import Shimmer from "./Shimmer";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; //component
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   //Local state variable -Super powerful variable
@@ -32,6 +33,13 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+  const onlineStatus = useOnlineStatus(); //custom hook
+
+  if (onlineStatus === false) {
+    return (
+      <h1>It seems you're offline, please check your internet connection!!</h1>
+    );
+  }
 
   return listOfRestaurants.length === 0 ? ( //Conditional rendering
     <Shimmer />

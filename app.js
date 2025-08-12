@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client"; //earlier it used to work with react-dom but now we need to go inside client
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -6,7 +6,11 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+// import Groceries from "./components/Groceries";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; //RouterProvider and Outlet are  React components
+
+//lazy loading/Chunking/Code Splitting/dynamic bundling/on demand loading/dynamic import Groceries
+const Groceries = lazy(() => import("./components/Groceries")); //lazy is a function which takes a callback function which returns result of import function which takes path of Groceries
 
 const AppLayout = () => {
   return (
@@ -37,6 +41,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/groceries",
+        element: (
+          <Suspense fallback={<div>Loading....</div>}>
+            <Groceries />
+          </Suspense>
+        ), //Suspense is component given by react, we wrap our component which we are trying to lazy load around Suspense component, it takes time when we press Groceries link to load the Groceries bundle file , So during that time Suspenese shows a fallback JSX in the browser which we pass to it
       },
       {
         path: "/restaurants/:resId",
