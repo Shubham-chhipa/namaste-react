@@ -45,11 +45,11 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex items-center bg-[#E4D6E5]">
+        <div className="search ">
           <input
             type="text"
-            className="searchBox"
+            className="border-2 m-2 bg-white "
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -57,6 +57,7 @@ const Body = () => {
             }}
           />
           <button
+            className="mx-2 px-2 border-[1px] text-[#E4D6E5] bg-[#984216] rounded-md"
             onClick={() => {
               //filter the restaurants and update the UI
               const searchFilter = listOfRestaurants.filter((res) =>
@@ -70,17 +71,19 @@ const Body = () => {
             Search
           </button>
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = listOfRestaurants.filter(
-              (restaurant) => restaurant.info.avgRating > 4
-            );
-            setFilteredRestaurants(filteredList); //to update the state variable we have to use the setListOfRestuarants(setVariableName) and pass the new value as an argument, React will update the state variable and it will trigger the re-render of the respective component with the updated value. It triggered the Reconcilaation cycle.
-          }}
-        >
-          Top rated restaurants
-        </button>
+        <div>
+          <button
+            className="filter-btn mx-2 px-2 border-[1px] text-[#E4D6E5] bg-[#984216] rounded-md"
+            onClick={() => {
+              const filteredList = listOfRestaurants.filter(
+                (restaurant) => restaurant.info.avgRating > 4
+              );
+              setFilteredRestaurants(filteredList); //to update the state variable we have to use the setListOfRestuarants(setVariableName) and pass the new value as an argument, React will update the state variable and it will trigger the re-render of the respective component with the updated value. It triggered the Reconcilaation cycle.
+            }}
+          >
+            Top rated restaurants
+          </button>
+        </div>
       </div>
 
       <div className="res-container">
