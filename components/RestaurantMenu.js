@@ -22,15 +22,25 @@ const RestaurantMenu = () => {
   //   resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
   return (
-    <div className="menu">
-      {/* {RestaurantInfo} */}
-      <h1>{name}</h1>
-      <h2>
-        {avgRating} stars | {costForTwoMessage}
-      </h2>
-      <h3>{cuisines.join(", ")}</h3>
-      <h4>Outlet: {areaName}</h4>
-      <h4>{sla.slaString}</h4>
+    <div className="px-150">
+      <div className="pt-16">
+        {/* {RestaurantInfo} */}
+        <h1 className="font-bold text-3xl">{name}</h1>
+      </div>
+      <div className="pt-4 p-3 my-8 border-1 border-gray-300 rounded-3xl shad">
+        <h2 className="text-lg font-bold">
+          {avgRating} stars | {costForTwoMessage}
+        </h2>
+        <h3 className="text-orange-500 font-bold text-sm">
+          {cuisines.join(", ")}
+        </h3>
+        <h4>
+          <span className="font-bold text-sm">Outlet:</span>{" "}
+          <span className="text-gray-500 font-medium text-sm">{areaName}</span>
+        </h4>
+        <h4 className="text-sm font-bold">{sla.slaString}</h4>
+      </div>
+
       <h4>
         {/* {Restaurant Menu Categories} */}
         {resMenu.map((obj) =>

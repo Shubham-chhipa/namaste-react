@@ -17,12 +17,12 @@ const Header = () => {
   //If we want to do 2 different things on change of 2 different state variables then we can use 2 useEffect hooks for each state variable(dependency)
 
   return (
-    <div className="flex justify-between bg-[#984216] m-4 mb-0">
+    <div className="flex justify-between shadow-xl  mb-0">
       <div className="logo-container">
         <img className="w-30" src={LOGO_URL} alt="App Logo" />
       </div>
       <div className="flex items-center">
-        <ul className="mr-4 p-2 flex text-xl font-medium text-[#E4D6E5]">
+        <ul className="mr-4 p-2 flex text-lg font-medium">
           <li className="m-2 p-2">Online: {onlineStatus ? "🟢" : "🔴"}</li>
           <li className="m-2 p-2">
             <Link to="/">Home</Link>

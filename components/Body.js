@@ -44,12 +44,12 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? ( //Conditional rendering
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="flex items-center bg-[#E4D6E5]">
-        <div className="search ">
+    <div className="mx-70">
+      <div className="flex items-center  ">
+        <div className="px-4 ">
           <input
             type="text"
-            className="border-2 m-2 bg-white "
+            className="border-1 m-2 bg-white "
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -86,7 +86,7 @@ const Body = () => {
         </div>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap ">
         {filteredRestaurants.map(
           (
             restaurant //If listOfRestaurants changes then our cards in UI will change

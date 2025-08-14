@@ -4,14 +4,27 @@ const MenuItem = (props) => {
   // console.log(props);
   const { name, description, price, defaultPrice, imageId } = props?.menuInfo;
   return (
-    <li>
-      <div>
-        <h4>{name}</h4>
-        {price && <span>₹{price / 100}</span>}
-        {defaultPrice && <span>₹{defaultPrice / 100}</span>}
-        {description && <p>{description}</p>}
+    <li className="flex justify-between border-b border-gray-300 ">
+      <div className="my-4">
+        <h4 className="text-xl font-semibold">{name}</h4>
+        {price && <span className="text-md font-bold">₹{price / 100}</span>}
+        {defaultPrice && (
+          <span className="text-md font-bold">₹{defaultPrice / 100}</span>
+        )}
+        {description && (
+          <p className="my-4 text-gray-600 font-semibold w-3/4">
+            {description}
+          </p>
+        )}
       </div>
-      <div>{imageId && <img src={RESTAURANT_MENU_IMG + imageId} />}</div>
+      <div className="w-32 h-32 my-4 overflow-hidden rounded-xl ">
+        {imageId && (
+          <img
+            className="w-full h-full object-cover "
+            src={RESTAURANT_MENU_IMG + imageId}
+          />
+        )}
+      </div>
     </li>
   );
 };
