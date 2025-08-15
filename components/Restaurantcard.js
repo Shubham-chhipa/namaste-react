@@ -25,4 +25,18 @@ const RestaurantCard = (props) => {
   );
 };
 
+export const withNewLabel = (RestaurantCard) => {
+  //Higher order Component
+  return (props) => {
+    return (
+      <div className="relative w-fit">
+        <label className="absolute top-0 left-0 bg-black text-white m-4 px-2 py-1 z-10 rounded ">
+          Newly Onboarded
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
 export default RestaurantCard;

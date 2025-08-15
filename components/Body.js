@@ -1,4 +1,4 @@
-import RestaurantCard from "./Restaurantcard";
+import RestaurantCard, { withNewLabel } from "./Restaurantcard";
 import Shimmer from "./Shimmer";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
@@ -10,6 +10,8 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]); //you can name state variable and its update function anything you want . You pass the default value for the state variable inside useState.
   const [filteredRestaurants, setFilteredRestaurants] = useState([]); //we created another state variable for managing the filtered restaurants so we don't update the listOfRestaurants
   const [searchText, setSearchText] = useState("");
+
+  const RestuarantCardNewlyOnboarded = withNewLabel(RestaurantCard);
 
   //Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
 
@@ -33,6 +35,8 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  console.log(listOfRestaurants);
   const onlineStatus = useOnlineStatus(); //custom hook
 
   if (onlineStatus === false) {
@@ -95,7 +99,11 @@ const Body = () => {
               to={"restaurants/" + restaurant.info.id}
               key={restaurant.info.id} //Now we are mapping over  <Link> </Link> component so key should be on <Link>  and not on <RestaurantCard />, Key should be over the parent JSX  i.e, <Link> coz we are mapping over it.
             >
-              <RestaurantCard resData={restaurant} />
+              {restaurant.info.isNewlyOnboarded ? (
+                <RestuarantCardNewlyOnboarded resData={restaurant} />
+              ) : (
+                <RestaurantCard resData={restaurant} />
+              )}
             </Link>
           )
         )}
