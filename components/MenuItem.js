@@ -18,7 +18,7 @@ const MenuItem = (props) => {
         )}
       </div>
       <div className="w-32 h-32 my-4 overflow-hidden rounded-xl ">
-        <button className="absolute px-7 mt-28 m-5  bg-white text-green-400 font-semibold border-gray-600 border-1 rounded-md">
+        <button className="absolute px-7 mt-28 m-5  bg-white text-green-400 font-semibold border-gray-300 border-1 rounded-md shadow-xl">
           ADD
         </button>
         {imageId && (
