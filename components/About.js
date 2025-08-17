@@ -1,6 +1,7 @@
 import User from "./User";
 import UserClass from "./UserClass";
 import React from "react";
+import UserContext from "../utils/UserContext";
 // const About = () => {
 // return (
 //   <div>
@@ -28,6 +29,10 @@ class About extends React.Component {
     return (
       <div>
         <h1>This is Reactjs About us page</h1>
+        {/**USerContext.Consumer is a Component given us by react, .Consumer is a power given us by react when we create a context, This component takes a callback function which takes the context data as an argument which is passed by react */}
+        <UserContext.Consumer>
+          {({ loggedInUser }) => <h1 className="font-bold">{loggedInUser}</h1>}
+        </UserContext.Consumer>
         {/* <User name="ShubhamChhipa(Functional Component)" location={"USA"} /> */}
         <UserClass name="First" location="USA" />
 

@@ -21,7 +21,7 @@ class UserClass extends React.Component {
     // console.log(this.props.name + "Child Component did mount");
     const data = await fetch("https://api.github.com/users/Shubham-chhipa");
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     //Never do state update directly :  like assigning +1 to itself(this.state.count)
     this.setState({
       //This function is given by react to update the state variables //this method can be accessed from anywhere inside the class
@@ -31,7 +31,7 @@ class UserClass extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log("Component did update");
+    // console.log("Component did update");
   }
 
   render() {

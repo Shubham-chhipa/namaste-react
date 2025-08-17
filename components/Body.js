@@ -1,15 +1,17 @@
 import RestaurantCard, { withNewLabel } from "./Restaurantcard";
 import Shimmer from "./Shimmer";
 import resList from "../utils/mockData";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom"; //component
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   //Local state variable -Super powerful variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]); //you can name state variable and its update function anything you want . You pass the default value for the state variable inside useState.
   const [filteredRestaurants, setFilteredRestaurants] = useState([]); //we created another state variable for managing the filtered restaurants so we don't update the listOfRestaurants
   const [searchText, setSearchText] = useState("");
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   const RestuarantCardNewlyOnboarded = withNewLabel(RestaurantCard);
 
@@ -36,7 +38,7 @@ const Body = () => {
     );
   };
 
-  console.log(listOfRestaurants);
+  // console.log(listOfRestaurants);
   const onlineStatus = useOnlineStatus(); //custom hook
 
   if (onlineStatus === false) {
@@ -75,6 +77,7 @@ const Body = () => {
             Search
           </button>
         </div>
+
         <div>
           <button
             className="filter-btn mx-2 px-2 border-[1px] text-[#E4D6E5] bg-[#984216] rounded-md"
@@ -87,6 +90,15 @@ const Body = () => {
           >
             Top rated restaurants
           </button>
+        </div>
+        <div className="px-4 ">
+          <label>UserName</label>
+          <input
+            className="border-1 m-2 bg-white"
+            type="text"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
 

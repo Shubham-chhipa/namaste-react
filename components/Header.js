@@ -1,9 +1,12 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { Link } from "react-router-dom"; //Link component given us by react-router-dom it will refresh the components which needs to be changed, avoiding whole page reload.
+import UserContext from "../utils/UserContext";
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
+  const { loggedInUser } = useContext(UserContext); //useContext is a hook given to us by react to use a context and we need to pass the context from which we want to access the data
+
   //console.log("Header render"); //To see that header component is rendered/called again.
   const onlineStatus = useOnlineStatus();
 
@@ -47,6 +50,7 @@ const Header = () => {
           >
             {btnNameReact}
           </button>
+          <li className="m-2 p-2">{loggedInUser}</li>
         </ul>
       </div>
     </div>

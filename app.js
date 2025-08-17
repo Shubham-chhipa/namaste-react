@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client"; //earlier it used to work with react-dom but now we need to go inside client
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -6,6 +6,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import UserContext from "./utils/UserContext";
 // import Groceries from "./components/Groceries";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; //RouterProvider and Outlet are  React components
 
@@ -13,11 +14,27 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; 
 const Groceries = lazy(() => import("./components/Groceries")); //lazy is a function which takes a callback function which returns result of import function which takes path of Groceries
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState(); //we linked state variable with the context(UserContext)
+
+  //authetication logic
+  useEffect(() => {
+    //Make an api call and send username and password
+    const data = {
+      //simulating data received from api call
+      name: "Shubham Chhipa",
+    };
+    setUserName(data.name);
+  }, []);
+
+  //We use UserCOntext.Provider(Provider power given by r eact when we create UserCOntext) and pass value which will update react context , basically the value overwrites the context, and wrapping our whole app inside Userconetxt.Provider makes the
+  //variables in context available anywhere inside our app
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 }; //Outlet component will be replaced with the component according to the route path
 
