@@ -11,6 +11,7 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]); //you can name state variable and its update function anything you want . You pass the default value for the state variable inside useState.
   const [filteredRestaurants, setFilteredRestaurants] = useState([]); //we created another state variable for managing the filtered restaurants so we don't update the listOfRestaurants
   const [searchText, setSearchText] = useState("");
+
   const { loggedInUser, setUserName } = useContext(UserContext);
 
   const RestuarantCardNewlyOnboarded = withNewLabel(RestaurantCard);

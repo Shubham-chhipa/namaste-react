@@ -35,6 +35,9 @@ class About extends React.Component {
         </UserContext.Consumer>
         {/* <User name="ShubhamChhipa(Functional Component)" location={"USA"} /> */}
         <UserClass name="First" location="USA" />
+        {/* <UserContext.Consumer>
+          {({ loggedInUser }) => <h1 className="font-bold">{loggedInUser}</h1>}
+        </UserContext.Consumer> */}
 
         {/** Class based components are used the same way as functional component and passing props is also same */}
       </div>

@@ -9,6 +9,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
 // import Groceries from "./components/Groceries";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; //RouterProvider and Outlet are  React components
+import { Provider } from "react-redux"; //Provider component from react redux coz it has to do with react-redux stuff
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 //lazy loading/Chunking/Code Splitting/dynamic bundling/on demand loading/dynamic import Groceries
 const Groceries = lazy(() => import("./components/Groceries")); //lazy is a function which takes a callback function which returns result of import function which takes path of Groceries
@@ -27,14 +30,18 @@ const AppLayout = () => {
   }, []);
 
   //We use UserCOntext.Provider(Provider power given by r eact when we create UserCOntext) and pass value which will update react context , basically the value overwrites the context, and wrapping our whole app inside Userconetxt.Provider makes the
-  //variables in context available anywhere inside our app
+  //context(variables in context) available anywhere inside our app
+  //we tied our UserCOntext with a local state variable, so whwnever our state variable changes the UserContext changes, and we can also pass in setUserName, So we can access setUserName and loggedInUser from anywhere in my app. So i can do a read write
+  // on my context from anywhere i want to
   return (
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-      <div className="app">
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 }; //Outlet component will be replaced with the component according to the route path
 
@@ -70,6 +77,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ], //<Body />. <About /> and <Contact /> are children of AppLayout
     errorElement: <Error />, //In case of error render Error component
