@@ -6,7 +6,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     //initial state is an object, which means initial value of our cartSlice
-    items: ["pizza", "burger", "chhole bhature", "Rajma chawal"],
+    items: [],
   },
   reducers: {
     //reducers is an object whihc contains actions an reducers, which means a reducer for each specific action
