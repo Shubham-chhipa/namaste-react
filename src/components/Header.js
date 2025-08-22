@@ -13,7 +13,8 @@ const Header = () => {
 
   //Using selector to subscribing the store for READING the store data
   const cartItems = useSelector((store) => store.cart.items); //useSelector is a hook which gives us access to the whole store, It takes a callback function and the argument of that callback function has access of the whole store from which we need only items portion of cart slice.
-  console.log(cartItems); //cartItems will have the value of store.cart.items
+  //the name is useSelector coz you are selecting a portion of your store, so you are subscribing to teh selected portion of the store
+  // console.log(cartItems); //cartItems will have the value of store.cart.items
 
   //In each case useEffect will be called on/after initial render
   //If no dependency array  => useEffect is called on/after every render

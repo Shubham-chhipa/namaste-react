@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 //creating a slice of our redux store
 const cartSlice = createSlice({
@@ -13,6 +13,9 @@ const cartSlice = createSlice({
     addItem: (state, action) => {
       //it gets access to state:state of the slice, and action
       //here we modify state based on action
+      // console.log(state); //redux creates a proxy object BTs which we cant access directly
+      console.log(current(state)); //current method helps us access the current state value
+
       state.items.push(action.payload);
     },
     removeItem: (state, action) => {
@@ -20,7 +23,12 @@ const cartSlice = createSlice({
       state.items.pop(); //pop for now you can build custom logic to remove specfic cart item
     },
     clearCart: (state, action) => {
+      //RTK: in reducers - either mutate the existing state or return a new state
       state.items.length = 0;
+
+      //or
+
+      // return { items: []} //this new state will be replaced inside original state = { items: []}
     },
   },
 });
@@ -40,4 +48,4 @@ const cartSlice = createSlice({
 
 export const { addItem, removeItem, clearCart } = cartSlice.actions;
 
-export default cartSlice.reducer;
+export default cartSlice.reducer; //we are exporting this one single reducer which is a combination of the above small reducers(functions): addItem,removeItem, clearCart

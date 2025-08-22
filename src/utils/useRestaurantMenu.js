@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MENU_API } from "../utils/constants";
+import { MENU_API } from "./constants";
 
 //Custom hook for all the data fetching conatins:  useEffect fetchData and it just return the
 const useRestaurantMenu = (resId) => {
