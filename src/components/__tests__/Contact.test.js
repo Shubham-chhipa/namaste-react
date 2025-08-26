@@ -1,6 +1,6 @@
 import Contact from "../Contact";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import "@testing-library/jest-dom"; //we import this to make the methods on expect(something). to work
 
 describe("contact Us page test case", () => {
   //Used to group testcases

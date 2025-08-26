@@ -1,4 +1,4 @@
-import RestaurantCard, { withNewLabel } from "./Restaurantcard";
+import RestaurantCard, { withNewLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import resList from "../utils/mockData";
 import { useState, useEffect, useContext } from "react";
@@ -56,10 +56,11 @@ const Body = () => {
         <div className="px-4 ">
           <input
             type="text"
+            data-testid="searchInput"
             className="border-1 m-2 bg-white "
             value={searchText}
             onChange={(e) => {
-              setSearchText(e.target.value);
+              setSearchText(e.target.value); //e and e.target.value is given by browser
               console.log(e.target.value);
             }}
           />
@@ -113,9 +114,9 @@ const Body = () => {
               key={restaurant.info.id} //Now we are mapping over  <Link> </Link> component so key should be on <Link>  and not on <RestaurantCard />, Key should be over the parent JSX  i.e, <Link> coz we are mapping over it.
             >
               {restaurant.info.isNewlyOnboarded ? (
-                <RestuarantCardNewlyOnboarded resData={restaurant} />
+                <RestuarantCardNewlyOnboarded resData={restaurant?.info} />
               ) : (
-                <RestaurantCard resData={restaurant} />
+                <RestaurantCard resData={restaurant?.info} />
               )}
             </Link>
           )

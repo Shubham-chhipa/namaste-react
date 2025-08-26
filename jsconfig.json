@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "checkJs": true,
+    //"checkJs": true, //due to this line it was JS type checking  and i was getting random error lines :"Property 'xyz' does not exist" Red underlines on valid imports"Cannot find name..." errors
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "types": ["jest", "@testing-library/jest-dom"]
