@@ -3,3 +3,96 @@ VS Code: has something known as emmet , it generates some code for you inside Vs
 how browser understands document.createElement browser has capabilities it has JS ENigine in it. //Browser doesn't know react and our project is also not configured to use react
 1st way of getting react in  ti our projrct is  via CDN
 Content delivery netwoeks are sites where react library is hosted and we are fething react from there using CDN link in our project and use it
+
+
+
+
+//Optimized way of writimg integration test for Cart.test.js
+✅ Why userEvent Is Preferred
+1. Simulates Real User Behavior
+
+userEvent.click() triggers all related events (mousedown, focus, mouseup, click) — just like a real user click.
+
+fireEvent.click() just triggers a synthetic click — skipping intermediate behaviors like focus.
+
+
+///////////////////////////////////////////////////////////////////////////////
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import RestaurantMenu from "../RestaurantMenu";
+import Header from "../Header";
+import Cart from "../Cart";
+import { act } from "react";
+import { Provider } from "react-redux";
+import appStore from "../../utils/appStore";
+import { BrowserRouter } from "react-router-dom";
+import MOCK_DATA from "../mocks/mockResMenu.json";
+
+import "@testing-library/jest-dom";
+
+// Mock fetch globally
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve(MOCK_DATA),
+  })
+);
+
+// Utility: render full app layout
+const renderWithProviders = () => {
+  return render(
+    <BrowserRouter>
+      <Provider store={appStore}>
+        <Header />
+        <RestaurantMenu />
+        <Cart />
+      </Provider>
+    </BrowserRouter>
+  );
+};
+
+describe("RestaurantMenu Integration Tests", () => {
+  beforeEach(async () => {
+    await act(async () => {
+      renderWithProviders();
+    });
+  });
+
+  it("should load restaurant menu with 251 items", async () => {
+    const recommendedMenu = await screen.findByText(/Recommended/i);
+    expect(recommendedMenu).toBeInTheDocument();
+
+    const menuItems = await screen.findAllByTestId("menuItem");
+    expect(menuItems.length).toBe(251);
+  });
+
+  it("should update cart count to 1 when 1 item is added", async () => {
+    const addBtns = await screen.findAllByRole("button", { name: "ADD" });
+
+    await userEvent.click(addBtns[0]);
+
+    expect(screen.getByText("Cart(1)")).toBeInTheDocument();
+  });
+
+  it("should update cart count to 2 when another item is added", async () => {
+    const addBtns = await screen.findAllByRole("button", { name: "ADD" });
+
+    await userEvent.click(addBtns[0]);
+    await userEvent.click(addBtns[1]);
+
+    expect(screen.getByText("Cart(2)")).toBeInTheDocument();
+  });
+
+  it("should clear cart and reset items", async () => {
+    const addBtns = await screen.findAllByRole("button", { name: "ADD" });
+
+    await userEvent.click(addBtns[0]);
+    await userEvent.click(addBtns[1]);
+
+    const clearCartBtn = screen.getByRole("button", { name: "Clear Cart" });
+
+    await userEvent.click(clearCartBtn);
+
+    expect(screen.getAllByTestId("menuItem").length).toBe(251);
+    expect(screen.getByText("Cart(0)")).toBeInTheDocument();
+  });
+});

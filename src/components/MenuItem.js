@@ -18,7 +18,10 @@ const MenuItem = ({ menuInfo }) => {
 
   const { name, description, price, defaultPrice, imageId } = menuInfo;
   return (
-    <li className="flex justify-between border-b border-gray-300 ">
+    <li
+      data-testid="menuItem"
+      className="flex justify-between border-b border-gray-300 "
+    >
       <div className="w-11/12 my-4">
         <h4 className="text-xl font-semibold">{name}</h4>
         {price && <span className="text-md font-bold">₹{price / 100}</span>}
