@@ -2,7 +2,7 @@ import Contact from "../../Contact";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom"; //we import this to make the methods on expect(something). to work
 
-//Used to group testcases
+//describe function is used to group testcases into blocks
 describe("contact Us page test case", () => {
   // beforeAll(() => {
   //   // It takes a calllback function as an argument runs before all test cases , similar for all as per name
